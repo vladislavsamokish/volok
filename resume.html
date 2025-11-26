@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Резюме — Волок Сергій Анатолійович</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #0056b3; /* Насичений діловий синій */
+      --secondary-color: #333333; /* Темно-сірий для тексту */
+      --accent-red: #c8102e; /* Червоний для етнічних акцентів */
+      --bg-light: #f4f7f9;
+      --sidebar-bg: #ffffff;
+      --border-color: #e1e4e8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      margin: 0;
+      padding: 40px 20px;
+      color: var(--secondary-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* --- ЕТНІЧНИЙ УКРАЇНСЬКИЙ АКЦЕНТ (Верхній орнамент) --- */
+    .ukrainian-border {
+      height: 12px;
+      width: 100%;
+      background-color: var(--accent-red);
+      background-image: 
+        linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
+        linear-gradient(-45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0;
+      opacity: 0.8;
+    }
+    /* ---------------------------------------------------- */
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr; /* Двоколоночна структура */
+    }
+
+    /* --- SIDEBAR (Ліва колонка) --- */
+    .sidebar {
+      background: var(--sidebar-bg);
+      padding: 30px;
+      border-right: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .photo-container {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      margin-top: 30px;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+    
+    .sidebar h2:first-of-type {
+        margin-top: 0;
+    }
+
+    .contact-list, .education-list, .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-list li strong {
+        min-width: 70px;
+        color: #555;
+    }
+
+    .education-item {
+        margin-bottom: 15px;
+    }
+    .education-item .uni {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .education-item .years {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .skill-category {
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-top: 15px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* --- MAIN CONTENT (Права колонка) --- */
+    .content {
+      padding: 40px;
+    }
+
+    .header {
+      margin-bottom: 35px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0 0 10px 0;
+      color: #1a1a1a;
+      font-weight: 800;
+    }
+
+    .header-subtitle {
+      font-size: 20px;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .content h2 {
+      font-size: 22px;
+      color: #1a1a1a;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Елемент перед заголовками */
+    .content h2::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 24px;
+        background: var(--primary-color);
+        margin-right: 12px;
+        border-radius: 2px;
+    }
+
+    .summary-text {
+      font-size: 16px;
+      color: #444;
+      background: #f9fbfc;
+      padding: 20px;
+      border-left: 4px solid var(--primary-color);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* --- Job Blocks --- */
+    .job-block {
+      margin-bottom: 30px;
+      padding-left: 20px;
+      border-left: 2px solid var(--border-color);
+    }
+
+    .job-company {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--secondary-color);
+    }
+
+    .job-dates {
+      font-size: 15px;
+      color: var(--primary-color);
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: inline-block;
+      background: #eef5ff;
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    .job-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 12px;
+      margin-bottom: 5px;
+    }
+    
+    .job-block ul {
+        margin-top: 8px;
+        padding-left: 20px;
+    }
+    .job-block li {
+        margin-bottom: 6px;
+    }
+
+    /* Адаптивність для мобільних */
+    @media (max-width: 768px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        text-align: center;
+      }
+      .contact-list li {
+          justify-content: center;
+      }
+      .header h1 {
+          font-size: 28px;
+      }
+      .container {
+          margin: 0;
+      }
+      body {
+          padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="ukrainian-border"></div>
+
+  <div class="main-layout">
+    
+    <aside class="sidebar">
+      <div class="photo-container">
+       <img src="volok.jpeg" alt="Волок Сергій Анатолійович" class="profile-photo">
+      </div>
+
+      <h2>Контакти</h2>
+      <ul class="contact-list">
+        <li><strong>Телефон:</strong> +380 99 947 9747</li>
+        <li><strong>Місто:</strong> Дніпро</li>
+      </ul>
+
+      <h2>Освіта</h2>
+      <div class="education-list">
+        <div class="education-item">
+            <span class="uni">Дніпропетровський національний університет ім. О. Гончара</span>
+            <span class="years">2009 – 2014</span>
+            <div>Спеціаліст з права (Правознавство)</div>
+        </div>
+      </div>
+
+      <h2>Ключові навички</h2>
+      <div class="skills-list">
+        <span class="skill-category">Лідерство:</span> Управління підрозділами, стратегічне планування, командна взаємодія.
+        
+        <span class="skill-category">Організаційні:</span> Документообіг, логістика, аналітичне мислення.
+        
+        <span class="skill-category">Комерційні:</span> Продажі, переговори, управління персоналом.
+        
+        <span class="skill-category">Технічні:</span> Робота з БАК, ремонт, технічна координація.
+      </div>
+
+      <h2>Додатково</h2>
+      <p style="font-size: 14px;">
+        Люблю спорт, автомобілі. Швидко навчаюся, володію високим рівнем технічної грамотності.
+      </p>
+    </aside>
+
+
+    <main class="content">
+      
+      <header class="header">
+        <h1>Волок Сергій Анатолійович</h1>
+        <div class="header-subtitle">Керівна посада / Управлінський та військовий досвід</div>
+      </header>
+
+      <h2>Професійне резюме</h2>
+      <p class="summary-text">
+        Досвідчений керівник із сильним поєднанням бойового, управлінського та комерційного досвіду. 
+        Пройшов повний військовий шлях у ЗСУ, де займав командні та штабні посади, що сформувало 
+        високу стресостійкість, стратегічне мислення та впевнені лідерські навички. Має значний 
+        досвід керування підрозділами, організації ремонтних процесів, роботи з БАК, планування 
+        та аналітики. У цивільній сфері понад 10 років працював у продажах та управлінні структурними 
+        підрозділами. Юридична освіта забезпечує глибоке розуміння нормативних процесів та ділової 
+        взаємодії. Орієнтований на результат, здатний ефективно діяти у динамічних і кризових умовах.
+      </p>
+
+      <h2>Досвід роботи</h2>
+
+      <div class="job-block">
+        <div class="job-company">Збройні Сили України, 60 окрема механізована Інгулецька бригада</div>
+        <div class="job-dates">01.03.2022 – 10.11.2025</div>
+
+        <div class="job-title">Обіймані посади:</div>
+        <ul>
+          <li>Командир відділення розбирально-складальних робіт</li>
+          <li>Командир взводу спеціальних робіт</li>
+          <li>Офіцер штабу</li>
+          <li>Головний сержант ремонтної роти</li>
+          <li>Головний сержант — начальник рухомої майстерні з ремонту та обслуговування БАК</li>
+        </ul>
+
+        <div class="job-title">Обов’язки та досягнення:</div>
+        <ul>
+          <li>Організовував та координував ремонтну діяльність підрозділу.</li>
+          <li>Забезпечував ефективне планування та розподіл задач між особовим складом.</li>
+          <li>Керував підрозділом у бойових та кризових умовах.</li>
+          <li>Виконував штабні функції: аналітика, документообіг, звітність, планування.</li>
+          <li>Координував технічне обслуговування та ремонт безпілотних авіаційних комплексів.</li>
+          <li>Забезпечував логістику, дисципліну та оперативну взаємодію між підрозділами.</li>
+        </ul>
+
+        <div class="job-title" style="color: var(--primary-color);">Нагороди:</div>
+        <ul>
+          <li>Медаль «ХРЕСТ 60 омбр»</li>
+          <li>Відзнака Міністра оборони України «ХРЕСТ ПОШАНИ»</li>
+          <li>Відзнака Міністра оборони України «ЗА ЗРАЗКОВУ СЛУЖБУ»</li>
+          <li>Медаль «ЗА ВІЙСЬКОВУ СЛУЖБУ УКРАЇНІ» (державна нагорода)</li>
+        </ul>
+      </div>
+
+      <div class="job-block">
+        <div class="job-company">ТОВ «Автокредит Плюс»</div>
+        <div class="job-dates">2019 – 2022</div>
+        <div class="job-title">Менеджер з продажу автомобілів, керівник структурного підрозділу</div>
+        <ul>
+          <li>Управління командою продажів та виконання KPI.</li>
+          <li>Організація бізнес-процесів підрозділу.</li>
+          <li>Проведення переговорів, робота з клієнтами та партнерами.</li>
+          <li>Розширення клієнтської бази та оптимізація внутрішніх процесів.</li>
+        </ul>
+      </div>
+
+      <div class="job-block">
+        <div class="job-company">Приватний підприємець</div>
+        <div class="job-dates">2006 – 2014</div>
+        <div class="job-title">Роздрібна торгівля технікою та мобільними телефонами</div>
+        <ul>
+          <li>Організація закупівель та продажів.</li>
+          <li>Фінансове планування і ведення господарської діяльності.</li>
+          <li>Робота з клієнтами та постачальниками.</li>
+        </ul>
+      </div>
+
+      <div class="job-block">
+        <div class="job-company">Помічник-консультант народного депутата України (громадські засади)</div>
+        <div class="job-dates">2012 – 2014</div>
+        <ul>
+          <li>Аналітична робота з документами.</li>
+          <li>Формування звернень, організаційний супровід.</li>
+        </ul>
+      </div>
+
+      <div class="job-block" style="border-left-color: transparent; padding-left: 0;">
+        <div class="job-company" style="font-size: 18px;">ПП Люта Т.В.</div>
+        <div class="job-dates">01.10.2005 – 10.10.2006</div>
+        <div>Продавець-консультант непродовольчих товарів</div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
