@@ -222,29 +222,132 @@
         margin-bottom: 6px;
     }
 
-    /* Адаптивність для мобільних */
-    @media (max-width: 768px) {
-      .main-layout {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        text-align: center;
-      }
-      .contact-list li {
-          justify-content: center;
-      }
-      .header h1 {
-          font-size: 28px;
-      }
-      .container {
-          margin: 0;
-      }
-      body {
-          padding: 10px;
-      }
-    }
+   /* --- Адаптивність для планшетів і мобільних --- */
+@media (max-width: 992px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: 25px;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    padding: 25px;
+  }
+
+  .profile-photo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* --- Адаптивність для мобільних 768px і менше --- */
+@media (max-width: 768px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .header-subtitle {
+    font-size: 16px;
+  }
+
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .sidebar h2 {
+    font-size: 16px;
+    margin-top: 25px;
+  }
+
+  .contact-list li strong {
+    display: inline-block;
+    width: auto;
+    min-width: auto;
+    margin-right: 6px;
+  }
+
+  .contact-list li {
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .summary-text {
+    font-size: 15px;
+    padding: 15px;
+  }
+
+  .content h2 {
+    font-size: 20px;
+  }
+
+  .job-block {
+    padding-left: 12px;
+    margin-bottom: 25px;
+  }
+
+  .job-company {
+    font-size: 18px;
+  }
+
+  .job-dates {
+    font-size: 14px;
+  }
+
+}
+
+/* --- Дуже маленькі екрани 480px --- */
+@media (max-width: 480px) {
+
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header-subtitle {
+    font-size: 15px;
+  }
+
+  p, li, .job-title {
+    font-size: 14px;
+  }
+
+  .summary-text {
+    font-size: 14px;
+  }
+
+  .content h2::before {
+    height: 18px;
+  }
+}
   </style>
 </head>
 <body>
