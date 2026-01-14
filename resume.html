@@ -17,6 +17,7 @@
             --bg-card: #25262b;
             --bg-lighter: #2c2e33;
             --accent-olive: #546e38;
+            --accent-hover: #6b8a4a;
             --text-white: #ffffff;
             --text-gray: #aeb0b8;
             --text-gold: #e0c068;
@@ -45,6 +46,7 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 100%; padding: 0 20px; margin: 0 auto; }
+        input, button { font-family: inherit; }
 
         /* --- ФОН --- */
         .pixel-bg {
@@ -90,6 +92,8 @@
         .hero { padding: 60px 0; text-align: center; border-bottom: 1px solid var(--border-color); }
         .hero h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 15px; }
         .hero p { color: var(--text-gray); margin-bottom: 30px; font-size: 1rem; max-width: 600px; margin: 0 auto 30px auto; }
+        
+        /* КНОПКА CTA */
         .main-cta {
             display: inline-block;
             background-color: var(--accent-olive);
@@ -98,10 +102,93 @@
             font-weight: 700;
             text-transform: uppercase;
             border-radius: 4px;
+            border: none;
             width: 100%;
             max-width: 350px;
             box-shadow: 0 4px 15px rgba(84, 110, 56, 0.4);
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
+        .main-cta:hover { background-color: var(--accent-hover); }
+
+        /* --- MODAL (POPUP) STYLES --- */
+        .modal {
+            display: none; /* Приховано за замовчуванням */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Затемнення фону */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-olive);
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--text-gray);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: var(--text-white); }
+
+        .modal h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-white);
+        }
+
+        .form-group { margin-bottom: 15px; }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background-color: #111;
+            border: 1px solid var(--border-color);
+            color: var(--text-white);
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .form-input:focus { border-color: var(--accent-olive); }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-olive);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .submit-btn:hover { background-color: var(--accent-hover); }
+
 
         /* --- POSLUGI --- */
         section { padding: 50px 0; }
@@ -122,64 +209,29 @@
         .service-card.urgent { border-left-color: var(--danger); }
         .service-card.urgent h3 { color: #ff6b6b; }
 
-        /* --- ПРО МЕНЕ (Updated Styles) --- */
+        /* --- ПРО МЕНЕ --- */
         .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 
         .resume-summary {
             background: rgba(84, 110, 56, 0.1);
-            border-left: 4px solid var(--accent-olive); /* Тільки смужка зліва, без рамки */
+            border-left: 4px solid var(--accent-olive);
             padding: 20px;
             margin-bottom: 30px;
         }
         .resume-summary p { font-style: italic; color: var(--text-gray); font-size: 0.95rem; }
 
-        /* Оновлені стилі для блоків досвіду */
         .resume-block { margin-bottom: 35px; }
+        .role-title { font-size: 1.2rem; font-weight: 700; color: var(--text-white); margin-bottom: 5px; line-height: 1.3; }
         
-        .role-title { 
-            font-size: 1.2rem; 
-            font-weight: 700; 
-            color: var(--text-white); 
-            margin-bottom: 5px; 
-            line-height: 1.3;
-        }
-        
-        /* Новий стиль для рядка Компанія + Дата */
-        .company-meta {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-        
-        .company-name {
-            color: var(--accent-olive);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-right: 8px;
-        }
-        
-        .years-text {
-            color: #777; /* Більш тьмяний колір для дати */
-        }
-        
-        .years-text::before {
-            content: "| ";
-            margin-right: 8px;
-            color: #444;
-        }
+        .company-meta { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 12px; font-weight: 500; }
+        .company-name { color: var(--accent-olive); text-transform: uppercase; font-weight: 700; margin-right: 8px; }
+        .years-text { color: #777; }
+        .years-text::before { content: "| "; margin-right: 8px; color: #444; }
 
         .resume-details ul { margin-top: 5px; padding-left: 15px; }
-        .resume-details li {
-            list-style-type: disc;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-            line-height: 1.5;
-        }
+        .resume-details li { list-style-type: disc; color: var(--text-gray); font-size: 0.95rem; margin-bottom: 6px; line-height: 1.5; }
         .resume-details li::marker { color: var(--accent-olive); }
 
-        /* Нагороди */
         .awards-container {
             background-color: var(--bg-card);
             padding: 25px;
@@ -187,14 +239,7 @@
             margin-top: 20px;
         }
         .awards-title { color: var(--text-gold); margin-bottom: 15px; font-size: 1.1rem; }
-        .award-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            color: var(--text-white);
-            font-weight: 500;
-        }
+        .award-item { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.95rem; color: var(--text-white); font-weight: 500; }
         .award-item::before { content: '🎖'; margin-right: 12px; font-size: 1.1rem; }
 
         /* --- FOOTER --- */
@@ -237,7 +282,8 @@
             <div class="container">
                 <h1>Військовий Юрист</h1>
                 <p>Правовий захист військовослужбовців у зоні бойових дій та в тилу. <br>Власний бойовий та штабний досвід у ЗСУ.</p>
-                <a href="#contacts" class="main-cta">Отримати консультацію</a>
+                
+                <button id="openModalBtn" class="main-cta">Отримати консультацію</button>
             </div>
         </section>
 
@@ -290,18 +336,15 @@
                 </div>
 
                 <div class="about-grid">
-                    
                     <div class="column-left">
                         <h3 style="margin-bottom: 25px; color: var(--accent-olive); text-transform: uppercase;">Військовий шлях</h3>
                         
                         <div class="resume-block">
                             <div class="role-title">Офіцер штабу / Головний сержант роти / Командир взводу</div>
-                            
                             <div class="company-meta">
                                 <span class="company-name">Збройні Сили України</span>
                                 <span class="years-text">03.2022 – 11.2025</span>
                             </div>
-
                             <div class="resume-details">
                                 <ul>
                                     <li>Штабна робота: документообіг, аналітика, звітність.</li>
@@ -322,7 +365,6 @@
                     </div>
 
                     <div class="column-right">
-                        
                         <h3 style="margin-bottom: 25px; color: var(--text-gray); text-transform: uppercase;">Освіта</h3>
                         
                         <div class="resume-block">
@@ -359,7 +401,6 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -372,9 +413,7 @@
             <div class="contacts-footer">
                 <div>📞 <a href="tel:+380999479747" style="font-weight: bold; color: var(--text-white);">+38 (099) 947-97-47</a></div>
                 <div>📍 м. Дніпро</div>
-                <div style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">Працюю по всій Україні </div>
-                 <div style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">офіс - м.Дніпро вул Королеви Єлизавети ІІ буд.7 офіс 1104 (БЦ Призма - орієнтир магазин "Touch")</div>
-
+                <div style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">Працюю по всій Україні (онлайн)</div>
             </div>
             <div class="social-links">
                 <a href="#" class="social-btn">Telegram</a>
@@ -383,6 +422,55 @@
             <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">&copy; 2025 Волок Сергій.</p>
         </div>
     </footer>
+
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Замовити консультацію</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Ваше ім'я" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-input" placeholder="Ваш телефон (напр. +380...)" required>
+                </div>
+                <button type="submit" class="submit-btn">Відправити</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Отримуємо елементи
+        const modal = document.getElementById("consultationModal");
+        const btn = document.getElementById("openModalBtn");
+        const closeSpan = document.getElementsByClassName("close-btn")[0];
+        const form = document.getElementById("contactForm");
+
+        // Відкрити модалку при кліку
+        btn.onclick = function() {
+            modal.style.display = "flex";
+        }
+
+        // Закрити при кліку на хрестик
+        closeSpan.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Закрити при кліку за межами вікна
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Імітація відправки (щоб показати, що працює)
+        form.onsubmit = function(e) {
+            e.preventDefault(); // Забороняє перезавантаження сторінки
+            alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
+            modal.style.display = "none";
+            form.reset(); // Очищує поля
+        }
+    </script>
 
 </body>
 </html>
