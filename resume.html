@@ -11,36 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- ЗМІННІ КОЛЬОРІВ (ПАЛІТРА "ТАКТИЧНА") --- */
+        /* --- ЗМІННІ КОЛЬОРІВ --- */
         :root {
-            --bg-dark: #1a1b1e;       /* Графітовий темний */
-            --bg-card: #25262b;       /* Трохи світліший для карток */
-            --bg-lighter: #2c2e33;    /* Для ховеру */
-            --accent-olive: #546e38;  /* Олива (основний акцент) */
+            --bg-dark: #1a1b1e;
+            --bg-card: #25262b;
+            --bg-lighter: #2c2e33;
+            --accent-olive: #546e38;
             --text-white: #ffffff;
             --text-gray: #aeb0b8;
-            --text-gold: #e0c068;     /* Для нагород */
+            --text-gold: #e0c068;
             --border-color: #383a42;
-            --danger: #d63031;        /* Червоний для СЗЧ */
+            --danger: #d63031;
         }
 
         /* --- БАЗОВІ НАЛАШТУВАННЯ --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth; /* Плавна прокрутка до якорів */
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-white);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
@@ -52,14 +44,9 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
+        .container { width: 100%; padding: 0 20px; margin: 0 auto; }
 
-        .container {
-            width: 100%;
-            padding: 0 20px;
-            margin: 0 auto;
-        }
-
-        /* --- ГРАФІЧНИЙ ПАТЕРН "ПІКСЕЛЬ" (ФОН) --- */
+        /* --- ФОН --- */
         .pixel-bg {
             background-image: 
                 linear-gradient(45deg, #1f2024 25%, transparent 25%, transparent 75%, #1f2024 75%, #1f2024),
@@ -83,30 +70,12 @@
             backdrop-filter: blur(5px);
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text-white);
-        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.1rem; font-weight: 800; color: var(--text-white); }
         .brand span { color: var(--accent-olive); }
 
-        /* Навігація в хедері */
-        .nav-links {
-            display: none; /* Приховано на мобільному за замовчуванням */
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            margin-right: 20px;
-            font-weight: 600;
-            color: var(--text-gray);
-        }
+        .nav-links { display: none; }
+        .nav-links a { font-size: 0.9rem; margin-right: 20px; font-weight: 600; color: var(--text-gray); }
         .nav-links a:hover { color: var(--text-white); }
 
         .cta-btn-header {
@@ -117,28 +86,10 @@
             font-size: 0.85rem;
         }
         
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            font-size: 1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+        /* --- HERO --- */
+        .hero { padding: 60px 0; text-align: center; border-bottom: 1px solid var(--border-color); }
+        .hero h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 15px; }
+        .hero p { color: var(--text-gray); margin-bottom: 30px; font-size: 1rem; max-width: 600px; margin: 0 auto 30px auto; }
         .main-cta {
             display: inline-block;
             background-color: var(--accent-olive);
@@ -151,35 +102,13 @@
             max-width: 350px;
             box-shadow: 0 4px 15px rgba(84, 110, 56, 0.4);
         }
-        .main-cta:hover { background-color: var(--accent-hover); }
 
-        /* --- ЗАГАЛЬНІ СТИЛІ СЕКЦІЙ --- */
+        /* --- POSLUGI --- */
         section { padding: 50px 0; }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.8rem;
-            color: var(--text-white);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-olive);
-            margin: 10px auto 0;
-        }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 1.8rem; color: var(--text-white); }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background-color: var(--accent-olive); margin: 10px auto 0; }
 
-        /* --- ПОСЛУГИ (GRID) --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .service-card {
             background-color: var(--bg-card);
             padding: 20px;
@@ -190,112 +119,97 @@
         .service-card:hover { transform: translateX(5px); background-color: var(--bg-lighter); }
         .service-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-white); }
         .service-card p { font-size: 0.9rem; color: var(--text-gray); }
-
         .service-card.urgent { border-left-color: var(--danger); }
         .service-card.urgent h3 { color: #ff6b6b; }
 
-        /* --- СЕКЦІЯ ПРО МЕНЕ (RESUME) --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
+        /* --- ПРО МЕНЕ (Updated Styles) --- */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 
-        /* Блок резюме (Summary) */
         .resume-summary {
-            background: rgba(84, 110, 56, 0.1); /* Легкий оливковий фон */
-            border: 1px solid var(--accent-olive);
+            background: rgba(84, 110, 56, 0.1);
+            border-left: 4px solid var(--accent-olive); /* Тільки смужка зліва, без рамки */
             padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .resume-summary p { font-style: italic; color: var(--text-gray); font-size: 0.95rem; }
 
-        /* Елементи досвіду */
-        .resume-block { margin-bottom: 25px; }
-        .resume-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            flex-direction: column;
+        /* Оновлені стилі для блоків досвіду */
+        .resume-block { margin-bottom: 35px; }
+        
+        .role-title { 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            color: var(--text-white); 
+            margin-bottom: 5px; 
+            line-height: 1.3;
         }
         
-        .role-title { font-size: 1.1rem; font-weight: 700; color: var(--text-white); }
-        .company-name { font-size: 0.9rem; color: var(--accent-olive); text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
-        .years-badge {
-            background-color: var(--bg-lighter);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+        /* Новий стиль для рядка Компанія + Дата */
+        .company-meta {
+            font-size: 0.9rem;
             color: var(--text-gray);
-            border: 1px solid var(--border-color);
-            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .company-name {
+            color: var(--accent-olive);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .years-text {
+            color: #777; /* Більш тьмяний колір для дати */
+        }
+        
+        .years-text::before {
+            content: "| ";
+            margin-right: 8px;
+            color: #444;
         }
 
-        .resume-details ul { margin-top: 10px; padding-left: 20px; }
+        .resume-details ul { margin-top: 5px; padding-left: 15px; }
         .resume-details li {
             list-style-type: disc;
             color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            line-height: 1.5;
         }
         .resume-details li::marker { color: var(--accent-olive); }
 
-        /* Блок нагород */
+        /* Нагороди */
         .awards-container {
             background-color: var(--bg-card);
-            padding: 20px;
+            padding: 25px;
             border-top: 3px solid var(--text-gold);
             margin-top: 20px;
         }
         .awards-title { color: var(--text-gold); margin-bottom: 15px; font-size: 1.1rem; }
         .award-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
             color: var(--text-white);
             font-weight: 500;
         }
-        .award-item::before {
-            content: '🎖';
-            margin-right: 10px;
-        }
+        .award-item::before { content: '🎖'; margin-right: 12px; font-size: 1.1rem; }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: #111;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
+        footer { background-color: #111; padding: 40px 0; text-align: center; border-top: 1px solid var(--border-color); }
         .contacts-footer div { margin-bottom: 15px; font-size: 1.1rem; }
-        .social-links { margin-top: 20px; }
-        .social-btn {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 20px;
-            border: 1px solid var(--text-gray);
-            border-radius: 4px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
+        .social-btn { display: inline-block; margin: 0 10px; padding: 10px 20px; border: 1px solid var(--text-gray); border-radius: 4px; color: var(--text-gray); font-size: 0.9rem; }
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
-            .nav-links { display: block; } /* Показати меню на ПК */
+            .nav-links { display: block; }
             .header-content { justify-content: space-between; }
-            
             .hero h1 { font-size: 3rem; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
-            
-            .about-grid { grid-template-columns: 3fr 2fr; } /* Ліва колонка ширша */
-            .resume-header { flex-direction: row; align-items: center; }
-            .years-badge { margin-left: 15px; }
+            .about-grid { grid-template-columns: 3fr 2fr; }
         }
-
         @media (min-width: 1024px) {
             .container { max-width: 1100px; }
             .services-grid { grid-template-columns: repeat(3, 1fr); }
@@ -309,23 +223,20 @@
     <header>
         <div class="container header-content">
             <div class="brand">ВОЛОК <span>СЕРГІЙ</span></div>
-            
             <nav class="nav-links">
                 <a href="#services">Послуги</a>
                 <a href="#about">Досвід</a>
                 <a href="#contacts">Контакти</a>
             </nav>
-
             <a href="tel:+380999479747" class="cta-btn-header">📞 +38 (099) 947-97-47</a>
         </div>
     </header>
 
     <main>
-        
         <section class="hero">
             <div class="container">
                 <h1>Військовий Юрист</h1>
-                <p>Правовий захист військовослужбовців у зоні бойових дій та в тилу. <br>Власний бойовий та штабний досвід у ЗСУ (2022-2025).</p>
+                <p>Правовий захист військовослужбовців у зоні бойових дій та в тилу. <br>Власний бойовий та штабний досвід у ЗСУ.</p>
                 <a href="#contacts" class="main-cta">Отримати консультацію</a>
             </div>
         </section>
@@ -333,38 +244,31 @@
         <section id="services" class="services">
             <div class="container">
                 <h2 class="section-title">Послуги</h2>
-                
                 <div class="services-grid">
                     <article class="service-card">
                         <h3>💰 Виплати та компенсації</h3>
-                        <p>Допомога в отриманні виплат за поранення, звільнення, втрату працездатності, ГЗ та ДВ.</p>
+                        <p>Допомога в отриманні виплат за поранення, звільнення, втрату працездатності.</p>
                     </article>
-
                     <article class="service-card">
                         <h3>🎖 Отримання УБД</h3>
                         <p>Супровід процесу отримання статусу Учасника бойових дій. Збір документів.</p>
                     </article>
-
                     <article class="service-card">
-                        <h3>🔄 Переведення та переміщення</h3>
-                        <p>Юридична підтримка при переведенні. Допомога у пошуку рекомендаційних листів.</p>
+                        <h3>🔄 Переведення</h3>
+                        <p>Юридична підтримка при переміщенні. Допомога у пошуку рекомендаційних листів.</p>
                     </article>
-
                     <article class="service-card">
                         <h3>🏠 Звільнення із ЗСУ</h3>
                         <p>Аналіз підстав. Підготовка рапортів за сімейними обставинами або станом здоров'я.</p>
                     </article>
-
                     <article class="service-card">
                         <h3>📝 Рапорти та ВЛК</h3>
                         <p>Оскарження рішень ВЛК. Рапорти на відпустки, лікування, МСЕК.</p>
                     </article>
-
                     <article class="service-card">
                         <h3>🗂 Військовий облік</h3>
-                        <p>Оформлення відстрочки, зняття з розшуку, питання перебування у розпорядженні.</p>
+                        <p>Оформлення відстрочки, зняття з розшуку, перебування у розпорядженні.</p>
                     </article>
-
                     <article class="service-card urgent">
                         <h3>⚠️ Допомога при СЗЧ</h3>
                         <p>Кризовий захист у випадках самовільного залишення частини. Правовий супровід.</p>
@@ -388,19 +292,21 @@
                 <div class="about-grid">
                     
                     <div class="column-left">
-                        <h3 style="margin-bottom: 20px; color: var(--accent-olive);">Військовий шлях (ЗСУ)</h3>
+                        <h3 style="margin-bottom: 25px; color: var(--accent-olive); text-transform: uppercase;">Військовий шлях</h3>
                         
                         <div class="resume-block">
-                            <div class="company-name">Збройні Сили України</div>
-                            <div class="resume-header">
-                                <div class="role-title">Офіцер штабу / Головний сержант роти / Командир взводу</div>
-                                <div class="years-badge">03.2022 – 11.2025</div>
+                            <div class="role-title">Офіцер штабу / Головний сержант роти / Командир взводу</div>
+                            
+                            <div class="company-meta">
+                                <span class="company-name">Збройні Сили України</span>
+                                <span class="years-text">03.2022 – 11.2025</span>
                             </div>
+
                             <div class="resume-details">
                                 <ul>
-                                    <li>Штабна робота: документообіг, аналітика, звітність (розуміння бюрократії ЗСУ).</li>
+                                    <li>Штабна робота: документообіг, аналітика, звітність.</li>
                                     <li>Командування підрозділами у бойових та кризових умовах.</li>
-                                    <li>Організація правового та технічного забезпечення особового складу.</li>
+                                    <li>Організація правового та технічного забезпечення.</li>
                                     <li>Служба на посадах: від командира відділення до начальника майстерні БАК.</li>
                                 </ul>
                             </div>
@@ -417,17 +323,23 @@
 
                     <div class="column-right">
                         
-                        <h3 style="margin-bottom: 20px; color: var(--text-gray);">Освіта</h3>
+                        <h3 style="margin-bottom: 25px; color: var(--text-gray); text-transform: uppercase;">Освіта</h3>
+                        
                         <div class="resume-block">
                             <div class="role-title">Правознавство (Спеціаліст з права)</div>
-                            <div class="company-name">Дніпропетровський національний університет ім. О. Гончара</div>
-                            <div class="years-badge">2009 – 2014</div>
+                            <div class="company-meta">
+                                <span class="company-name">ДНУ ім. О. Гончара</span>
+                                <span class="years-text">2009 – 2014</span>
+                            </div>
                         </div>
 
-                        <h3 style="margin-bottom: 20px; color: var(--text-gray); margin-top: 30px;">Цивільний досвід</h3>
+                        <h3 style="margin-bottom: 25px; color: var(--text-gray); text-transform: uppercase; margin-top: 40px;">Цивільний досвід</h3>
+                        
                         <div class="resume-block">
                             <div class="role-title">Помічник-консультант народного депутата</div>
-                            <div class="years-badge">2012 – 2014</div>
+                            <div class="company-meta">
+                                <span class="years-text" style="margin-left: 0; padding-left: 0;">2012 – 2014</span>
+                            </div>
                             <div class="resume-details">
                                 <ul>
                                     <li>Аналітична робота з документами, формування звернень.</li>
@@ -437,8 +349,10 @@
 
                         <div class="resume-block">
                             <div class="role-title">Керівник підрозділу / Менеджер</div>
-                            <div class="company-name">ТОВ «Автокредит Плюс»</div>
-                            <div class="years-badge">2019 – 2022</div>
+                            <div class="company-meta">
+                                <span class="company-name">ТОВ «Автокредит Плюс»</span>
+                                <span class="years-text">2019 – 2022</span>
+                            </div>
                             <div class="resume-details">
                                 <ul>
                                     <li>Управління командою, переговори, організація процесів.</li>
@@ -450,7 +364,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer id="contacts">
@@ -461,16 +374,11 @@
                 <div>📍 м. Дніпро</div>
                 <div style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">Працюю по всій Україні (онлайн)</div>
             </div>
-            
             <div class="social-links">
                 <a href="#" class="social-btn">Telegram</a>
                 <a href="#" class="social-btn">Viber</a>
-                <a href="#" class="social-btn">Signal</a>
             </div>
-            
-            <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">
-                &copy; 2025 Волок Сергій. Всі права захищено.
-            </p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">&copy; 2025 Волок Сергій.</p>
         </div>
     </footer>
 
