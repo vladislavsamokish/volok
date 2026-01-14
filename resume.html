@@ -3,471 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме — Волок Сергій Анатолійович</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-
+    <title>Військовий Юрист | Волок Сергій</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- ЗМІННІ КОЛЬОРІВ (ПАЛІТРА "ТАКТИЧНА") --- */
         :root {
-            --primary-color: #0056b3; /* Насичений діловий синій */
-            --secondary-color: #333333; /* Темно-сірий для тексту */
-            --accent-red: #c8102e; /* Червоний для етнічних акцентів */
-            --bg-light: #f4f7f9;
-            --sidebar-bg: #ffffff;
-            --border-color: #e1e4e8;
+            --bg-dark: #1a1b1e;       /* Графітовий темний */
+            --bg-card: #25262b;       /* Трохи світліший для карток */
+            --accent-olive: #546e38;  /* Олива (як на візитівці) */
+            --accent-hover: #6b8a4a;  /* Світліша олива для наведення */
+            --text-white: #ffffff;
+            --text-gray: #aeb0b8;
+            --border-color: #383a42;
+            --danger: #d63031;        /* Для термінових випадків (СЗЧ) */
+        }
+
+        /* --- БАЗОВІ НАЛАШТУВАННЯ (RESET) --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            margin: 0;
-            padding: 40px 20px;
-            color: var(--secondary-color);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            background: #fff;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* --- ЕТНІЧНИЙ УКРАЇНСЬКИЙ АКЦЕНТ (Верхній орнамент) --- */
-        .ukrainian-border {
-            height: 12px;
-            width: 100%;
-            background-color: var(--accent-red);
-            background-image: 
-                linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
-                linear-gradient(-45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 0;
-            opacity: 0.8;
-        }
-        /* ---------------------------------------------------- */
-
-        .main-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Двоколоночна структура за замовчуванням */
-        }
-
-        /* --- SIDEBAR (Ліва колонка) --- */
-        .sidebar {
-            background: var(--sidebar-bg);
-            padding: 30px;
-            border-right: 1px solid var(--border-color);
-            text-align: left;
-        }
-
-        .photo-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .profile-photo {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); /* Покращено тінь */
-        }
-
-        .sidebar h2 {
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            margin-top: 30px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-        }
-        
-        .sidebar h2:first-of-type {
-            margin-top: 0;
-        }
-
-        .contact-list, .education-list, .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contact-list li {
-            margin-bottom: 12px;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-list li strong {
-            min-width: 70px;
-            color: #555;
-        }
-
-        .education-item {
-            margin-bottom: 15px;
-        }
-        .education-item .uni {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .education-item .years {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .skill-category {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 15px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        /* --- MAIN CONTENT (Права колонка) --- */
-        .content {
-            padding: 40px;
-        }
-
-        .header {
-            margin-bottom: 35px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin: 0 0 10px 0;
-            color: #1a1a1a;
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .header-subtitle {
-            font-size: 20px;
-            color: var(--primary-color);
-            font-weight: 500;
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- ГРАФІЧНИЙ ПАТЕРН "ПІКСЕЛЬ" (ФОН) --- */
+        .pixel-bg {
+            background-image: 
+                linear-gradient(45deg, #1f2024 25%, transparent 25%, transparent 75%, #1f2024 75%, #1f2024),
+                linear-gradient(45deg, #1f2024 25%, transparent 25%, transparent 75%, #1f2024 75%, #1f2024);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.5;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
         }
 
-        .content h2 {
-            font-size: 22px;
-            color: #1a1a1a;
-            margin-top: 35px;
-            margin-bottom: 20px;
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(26, 27, 30, 0.95);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--accent-olive);
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
 
-        /* Елемент перед заголовками */
-        .content h2::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 24px;
-            background: var(--primary-color);
-            margin-right: 12px;
-            border-radius: 2px;
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-white);
         }
+        .brand span { color: var(--accent-olive); }
 
-        .summary-text {
-            font-size: 16px;
-            color: #444;
-            background: #f9fbfc;
-            padding: 20px;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 0 8px 8px 0;
-        }
-
-        /* --- Job Blocks --- */
-        .job-block {
-            margin-bottom: 30px;
-            padding-left: 20px;
-            border-left: 2px solid var(--border-color);
-        }
-
-        .job-company {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-
-        .job-dates {
-            font-size: 15px;
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 10px;
-            display: inline-block;
-            background: #eef5ff;
-            padding: 2px 10px;
-            border-radius: 12px;
-        }
-
-        .job-title {
-            font-weight: 700;
-            font-size: 16px;
-            margin-top: 12px;
-            margin-bottom: 5px;
+        .cta-btn-header {
+            background-color: var(--accent-olive);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
         
-        .job-block ul {
-            margin-top: 8px;
-            padding-left: 20px;
-        }
-        .job-block li {
-            margin-bottom: 6px;
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* ================================================= */
-        /* === АДАПТИВНІСТЬ (Внесені зміни) === */
-        /* ================================================= */
+        .hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
 
-        /* 1. ПЛАНШЕТИ (min-width: 769px) - Зберігаємо дві колонки, оптимізуємо відступи */
-        @media (min-width: 769px) and (max-width: 1000px) {
-            body {
-                padding: 20px 10px;
+        .hero p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .main-cta {
+            display: inline-block;
+            background-color: var(--accent-olive);
+            color: white;
+            padding: 15px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 4px 15px rgba(84, 110, 56, 0.4);
+        }
+
+        /* --- ПОСЛУГИ (GRID) --- */
+        .services {
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--text-white);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-olive);
+            margin: 10px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile first: 1 колонка */
+            gap: 15px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-left: 5px solid var(--accent-olive); /* Вертикальна смуга як на візитівці */
+            border-radius: 0 4px 4px 0;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateX(5px);
+            background-color: #2c2e33;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Особливий стиль для СЗЧ (червоний акцент) */
+        .service-card.urgent {
+            border-left-color: var(--danger);
+        }
+        .service-card.urgent h3 {
+            color: #ff6b6b;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contacts div {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: 1px solid var(--text-gray);
+            border-radius: 4px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- MEDIA QUERIES (АДАПТИВНІСТЬ) --- */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшеті */
             }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (min-width: 1024px) {
             .container {
-                box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+                max-width: 1100px;
+                margin: 0 auto;
             }
-            .main-layout {
-                grid-template-columns: 260px 1fr; 
-            }
-            .content, .sidebar {
-                padding: 20px;
-            }
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-            h1 {
-                font-size: 30px;
-            }
-            .header-subtitle {
-                font-size: 18px;
-            }
-        }
-
-        /* 2. МОБІЛЬНІ ТЕЛЕФОНИ (max-width: 768px) - Переходимо на одну колонку */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                box-shadow: none;
-                border-radius: 0;
-            }
-            
-            .main-layout {
-                grid-template-columns: 1fr; /* Перехід на одну колонку */
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .sidebar {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                text-align: center;
-                padding: 25px;
-            }
-
-            .profile-photo {
-                width: 140px;
-                height: 140px;
-            }
-            
-            /* Зміна для контактів у сайдбарі при одній колонці */
-            .contact-list li {
-                justify-content: center;
-                font-size: 14px;
-            }
-            .contact-list li strong {
-                display: inline-block;
-                width: auto;
-                min-width: auto;
-                margin-right: 6px;
-            }
-
-            .header h1 {
-                font-size: 26px;
-                line-height: 1.2;
-            }
-
-            .job-block {
-                padding-left: 12px;
-                margin-bottom: 25px;
-            }
-        }
-
-        /* 3. Дуже маленькі екрани (max-width: 480px) */
-        @media (max-width: 480px) {
-            .profile-photo {
-                width: 120px;
-                height: 120px;
-            }
-
-            .content {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-
-            p, li, .job-title, .summary-text {
-                font-size: 14px;
-            }
-
-            .content h2::before {
-                height: 18px;
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 колонки на ПК */
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="ukrainian-border"></div>
+    <div class="pixel-bg"></div>
 
-    <div class="main-layout">
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
+            <div class="brand">ВОЛОК <span>СЕРГІЙ</span></div>
+            <a href="tel:+380000000000" class="cta-btn-header">📞 Подзвонити</a>
+        </div>
+    </header>
+
+    <main class="container">
         
-        <aside class="sidebar">
-            <div class="photo-container">
-               <img src="volok.jpeg" alt="Волок Сергій Анатолійович" class="profile-photo">
-            </div>
+        <section class="hero">
+            <h1>Військовий Юрист</h1>
+            <p>Правовий захист військовослужбовців у зоні бойових дій та в тилу. Реальна допомога, а не просто консультації.</p>
+            <a href="#contacts" class="main-cta">Отримати консультацію</a>
+        </section>
 
-            <h2>Контакти</h2>
-            <ul class="contact-list">
-                <li><strong>Телефон:</strong> +380 99 947 9747</li>
-                <li><strong>Місто:</strong> Дніпро</li>
-            </ul>
-
-            <h2>Освіта</h2>
-            <div class="education-list">
-                <div class="education-item">
-                    <span class="uni">Дніпропетровський національний університет ім. О. Гончара</span>
-                    <span class="years">2009 – 2014</span>
-                    <div>Спеціаліст з права (Правознавство)</div>
-                </div>
-            </div>
-
-            <h2>Ключові навички</h2>
-            <div class="skills-list">
-                <span class="skill-category">Лідерство:</span> Управління підрозділами, стратегічне планування, командна взаємодія.
-                
-                <span class="skill-category">Організаційні:</span> Документообіг, логістика, аналітичне мислення.
-                
-                <span class="skill-category">Комерційні:</span> Продажі, переговори, управління персоналом.
-                
-                <span class="skill-category">Технічні:</span> Робота з БАК, ремонт, технічна координація.
-            </div>
-
-            <h2>Додатково</h2>
-            <p style="font-size: 14px;">
-                Люблю спорт, автомобілі. Швидко навчаюся, володію високим рівнем технічної грамотності.
-            </p>
-        </aside>
-
-
-        <main class="content">
+        <section class="services">
+            <h2 class="section-title">Послуги</h2>
             
-            <header class="header">
-                <h1>Волок Сергій Анатолійович</h1>
-                <div class="header-subtitle">Керівна посада / Управлінський та військовий досвід</div>
-            </header>
+            <div class="services-grid">
+                
+                <article class="service-card">
+                    <h3>💰 Виплати та компенсації</h3>
+                    <p>Допомога в отриманні виплат за поранення, звільнення, втрату працездатності, ГЗ та ДВ.</p>
+                </article>
 
-            <h2>Професійне резюме</h2>
-            <p class="summary-text">
-                Досвідчений керівник із сильним поєднанням бойового, управлінського та комерційного досвіду. 
-                Пройшов повний військовий шлях у ЗСУ, де займав командні та штабні посади, що сформувало 
-                високу стресостійкість, стратегічне мислення та впевнені лідерські навички. Має значний 
-                досвід керування підрозділами, організації ремонтних процесів, роботи з **Безпілотними Авіаційними Комплексами (БАК)**, планування 
-                та аналітики. У цивільній сфері понад 10 років працював у продажах та управлінні структурними 
-                підрозділами. Юридична освіта забезпечує глибоке розуміння нормативних процесів та ділової 
-                взаємодії. Орієнтований на результат, здатний ефективно діяти у динамічних і кризових умовах.
+                <article class="service-card">
+                    <h3>🎖 Отримання УБД</h3>
+                    <p>Супровід процесу отримання статусу Учасника бойових дій. Збір документів.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🔄 Переведення та переміщення</h3>
+                    <p>Юридична підтримка при переведенні в іншу частину. Допомога у пошуку рекомендаційних листів.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🏠 Звільнення із ЗСУ</h3>
+                    <p>Аналіз підстав для звільнення. Підготовка необхідного пакету документів.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>📝 Оформлення рапортів</h3>
+                    <p>Рапорти на відпустки, направлення на ВЛК, лікування, МСЕК. Правильне подання та реєстрація.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🗂 Військовий облік</h3>
+                    <p>Оформлення відстрочки, зняття з розшуку, питання перебування у розпорядженні командира.</p>
+                </article>
+
+                <article class="service-card urgent">
+                    <h3>⚠️ Допомога при СЗЧ</h3>
+                    <p>Кризовий захист у випадках самовільного залишення частини. Правовий супровід.</p>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакти</h2>
+            <div class="contacts">
+                <div>📞 <a href="tel:+380990000000">+38 (099) 000-00-00</a></div>
+                <div>💬 Telegram / WhatsApp / Signal</div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-btn">Telegram</a>
+                <a href="#" class="social-btn">Viber</a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">
+                &copy; 2024 Волок Сергій. Всі права захищено.
             </p>
-
-            <h2>Досвід роботи</h2>
-
-            <div class="job-block">
-                <div class="job-company">Збройні Сили України</div>
-                <div class="job-dates">01.03.2022 – 10.11.2025</div>
-
-                <div class="job-title">Обіймані посади:</div>
-                <ul>
-                    <li>Командир відділення розбирально-складальних робіт</li>
-                    <li>Командир взводу спеціальних робіт</li>
-                    <li>Офіцер штабу</li>
-                    <li>Головний сержант ремонтної роти</li>
-                    <li>Головний сержант — начальник рухомої майстерні з ремонту та обслуговування БАК</li>
-                </ul>
-
-                <div class="job-title">Обов’язки та досягнення:</div>
-                <ul>
-                    <li>Організовував та координував ремонтну діяльність підрозділу.</li>
-                    <li>Забезпечував ефективне планування та розподіл задач між особовим складом.</li>
-                    <li>Керував підрозділом у бойових та кризових умовах.</li>
-                    <li>Виконував штабні функції: аналітика, документообіг, звітність, планування.</li>
-                    <li>Координував технічне обслуговування та ремонт безпілотних авіаційних комплексів.</li>
-                    <li>Забезпечував логістику, дисципліну та оперативну взаємодію між підрозділами.</li>
-                </ul>
-
-                <div class="job-title" style="color: var(--primary-color);">Нагороди:</div>
-                <ul>
-                    <li>Медаль «ХРЕСТ»</li>
-                    <li>Відзнака Міністра оборони України «ХРЕСТ ПОШАНИ»</li>
-                    <li>Відзнака Міністра оборони України «ЗА ЗРАЗКОВУ СЛУЖБУ»</li>
-                    <li>Медаль «ЗА ВІЙСЬКОВУ СЛУЖБУ УКРАЇНІ» (державна нагорода)</li>
-                </ul>
-            </div>
-
-            <div class="job-block">
-                <div class="job-company">ТОВ «Автокредит Плюс»</div>
-                <div class="job-dates">2019 – 2022</div>
-                <div class="job-title">Менеджер з продажу автомобілів, керівник структурного підрозділу</div>
-                <ul>
-                    <li>Управління командою продажів та виконання KPI.</li>
-                    <li>Організація бізнес-процесів підрозділу.</li>
-                    <li>Проведення переговорів, робота з клієнтами та партнерами.</li>
-                    <li>Розширення клієнтської бази та оптимізація внутрішніх процесів.</li>
-                </ul>
-            </div>
-
-            <div class="job-block">
-                <div class="job-company">Приватний підприємець</div>
-                <div class="job-dates">2006 – 2014</div>
-                <div class="job-title">Роздрібна торгівля технікою та мобільними телефонами</div>
-                <ul>
-                    <li>Організація закупівель та продажів.</li>
-                    <li>Фінансове планування і ведення господарської діяльності.</li>
-                    <li>Робота з клієнтами та постачальниками.</li>
-                </ul>
-            </div>
-
-            <div class="job-block">
-                <div class="job-company">Помічник-консультант народного депутата України (громадські засади)</div>
-                <div class="job-dates">2012 – 2014</div>
-                <ul>
-                    <li>Аналітична робота з документами.</li>
-                    <li>Формування звернень, організаційний супровід.</li>
-                </ul>
-            </div>
-
-            <div class="job-block" style="border-left-color: transparent; padding-left: 0;">
-                <div class="job-company" style="font-size: 18px;">ПП Люта Т.В.</div>
-                <div class="job-dates">01.10.2005 – 10.10.2006</div>
-                <div>Продавець-консультант непродовольчих товарів</div>
-            </div>
-
-        </main>
-    </div>
-</div>
+        </div>
+    </footer>
 
 </body>
 </html>
