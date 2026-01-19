@@ -230,7 +230,23 @@
         /* --- FOOTER --- */
         footer { background-color: #111; padding: 40px 0; text-align: center; border-top: 1px solid var(--border-color); }
         .contacts-footer div { margin-bottom: 15px; font-size: 1.1rem; }
-        .social-btn { display: inline-block; margin: 0 10px; padding: 10px 20px; border: 1px solid var(--text-gray); border-radius: 4px; color: var(--text-gray); font-size: 0.9rem; }
+        
+        /* Стилі для кнопок соцмереж */
+        .social-btn { 
+            display: inline-block; 
+            margin: 0 10px; 
+            padding: 10px 20px; 
+            border: 1px solid var(--text-gray); 
+            border-radius: 4px; 
+            color: var(--text-gray); 
+            font-size: 0.9rem; 
+            transition: 0.3s;
+        }
+        .social-btn:hover {
+            color: var(--text-white);
+            border-color: var(--accent-olive);
+            background-color: rgba(84, 110, 56, 0.2);
+        }
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
@@ -492,8 +508,8 @@
                 <div style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">Працюю по всій Україні </div>
             </div>
             <div class="social-links">
-                <a href="#" class="social-btn">Telegram</a>
-                <a href="#" class="social-btn">Viber</a>
+                <a href="https://t.me/+380999479747" target="_blank" class="social-btn">Telegram</a>
+                <a href="viber://chat?number=%2B380999479747" class="social-btn">Viber</a>
             </div>
             <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">&copy; 2025 Волок Сергій.</p>
         </div>
@@ -526,83 +542,54 @@
         closeSpan.onclick = function() { modal.style.display = "none"; }
         window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
 
-        // Обробка відправки форми
-        form.onsubmit = function(e) {
+        // Обробка відправки форми з використанням async/await
+        form.onsubmit = async function(e) {
             e.preventDefault();
             
-            // Отримуємо кнопку відправки для блокування
             const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.innerText;
             
-            // Блокуємо кнопку
             submitButton.disabled = true;
             submitButton.innerText = "Відправка...";
 
-            // Знаходимо поля вводу
-            const nameInput = form.querySelector('input[type="text"]');
-            const phoneInput = form.querySelector('input[type="tel"]');
-            
-            const name = nameInput.value;
-            const phone = phoneInput.value;
+            const name = form.querySelector('input[type="text"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
 
-            // Налаштування Telegram
             const botToken = "8427026854:AAGaHXhz9J_r8GrOAxvRTl2FePxPdDs47-s";
             const chatId = 942134682;
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
             
-            // Текст першого повідомлення
             const firstMessage = `Сергій Анатолійович - зверніть увагу на сайті лишили заявку ${phone} - імя ${name}`;
-            
-            // Очистка номеру для другого повідомлення (видаляємо дужки, пробіли, тире)
-            // Залишаємо тільки цифри та плюс. Це гарантує, що Telegram зробить його клікабельним.
             const cleanPhone = phone.replace(/[^\d+]/g, '');
 
-            // 1. Відправка основного тексту
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: firstMessage
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    // 2. Якщо перше пішло успішно, відразу шлемо друге (тільки номер)
-                    return fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: cleanPhone // Тільки чистий номер для кліку
-                        })
-                    });
-                } else {
-                    throw new Error('Помилка при відправці першого повідомлення');
-                }
-            })
-            .then(response => {
-                // Тут ми вже після спроби відправки другого повідомлення
-                if (response && response.ok) {
-                    alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
-                    modal.style.display = "none";
-                    form.reset();
-                } else {
-                    // Якщо друге не пішло, але перше пішло - все одно кажемо ОК користувачу, бо заявка є
-                    alert("Дякую! Вашу заявку прийнято.");
-                    modal.style.display = "none";
-                    form.reset();
-                }
-            })
-            .catch(error => {
-                alert("Помилка мережі. Будь ласка, спробуйте зателефонувати.");
-                console.error("Помилка fetch:", error);
-            })
-            .finally(() => {
-                // Повертаємо кнопку в початковий стан
+            try {
+                // 1. Відправка першого повідомлення (чекаємо поки завершиться)
+                await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: firstMessage })
+                });
+
+                // 2. Відправка другого повідомлення (окремо номер)
+                await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: cleanPhone })
+                });
+
+                // Успішне завершення
+                alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
+                modal.style.display = "none";
+                form.reset();
+
+            } catch (error) {
+                console.error("Помилка відправки:", error);
+                alert("Дякую! Заявку спробувано надіслати. Якщо я не зателефоную, наберіть мене, будь ласка.");
+                modal.style.display = "none";
+            } finally {
                 submitButton.disabled = false;
                 submitButton.innerText = originalButtonText;
-            });
+            }
         }
     </script>
 
