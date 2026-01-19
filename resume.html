@@ -143,6 +143,7 @@
         .form-input { width: 100%; padding: 12px; background-color: #111; border: 1px solid var(--border-color); color: var(--text-white); border-radius: 4px; font-size: 1rem; outline: none; }
         .form-input:focus { border-color: var(--accent-olive); }
         .submit-btn { width: 100%; padding: 12px; background-color: var(--accent-olive); color: white; border: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; cursor: pointer; font-size: 1rem; }
+        .submit-btn:disabled { background-color: var(--text-gray); cursor: not-allowed; }
 
         /* --- SECTIONS --- */
         section { padding: 50px 0; }
@@ -189,7 +190,7 @@
             margin-bottom: 10px;
             border-radius: 4px;
             overflow: hidden;
-            border-left: 3px solid var(--accent-olive); /* Елемент дизайну як у карток послуг */
+            border-left: 3px solid var(--accent-olive);
         }
         
         .faq-item summary {
@@ -197,7 +198,7 @@
             cursor: pointer;
             font-weight: 600;
             color: var(--text-white);
-            list-style: none; /* Прибираємо дефолтний трикутник */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -341,7 +342,6 @@
                             <div class="award-item">Медаль «ЗА ВІЙСЬКОВУ СЛУЖБУ УКРАЇНІ» (Державна нагорода)</div>
                             <div class="award-item">Відзнака Міністра оборони «ХРЕСТ ПОШАНИ»</div>
                             <div class="award-item">Відзнака Міністра оборони «ЗА ЗРАЗКОВУ СЛУЖБУ»</div>
-                           
                         </div>
                     </div>
 
@@ -521,15 +521,67 @@
         const closeSpan = document.getElementsByClassName("close-btn")[0];
         const form = document.getElementById("contactForm");
 
+        // Логіка відкриття/закриття модального вікна
         btn.onclick = function() { modal.style.display = "flex"; }
         closeSpan.onclick = function() { modal.style.display = "none"; }
         window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
 
+        // Обробка відправки форми
         form.onsubmit = function(e) {
             e.preventDefault();
-            alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
-            modal.style.display = "none";
-            form.reset();
+            
+            // Отримуємо кнопку відправки для блокування
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerText;
+            
+            // Блокуємо кнопку, щоб уникнути подвійних натискань
+            submitButton.disabled = true;
+            submitButton.innerText = "Відправка...";
+
+            // Знаходимо поля вводу (за типом)
+            const nameInput = form.querySelector('input[type="text"]');
+            const phoneInput = form.querySelector('input[type="tel"]');
+            
+            const name = nameInput.value;
+            const phone = phoneInput.value;
+
+            // Налаштування Telegram
+            const botToken = "8427026854:AAGaHXhz9J_r8GrOAxvRTl2FePxPdDs47-s";
+            const chatId = 942134682;
+            const textMessage = `Сергій Анатолійович - зверніть увагу на сайті лишили заявку ${phone} - імя ${name}`;
+            
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            // Відправка запиту
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: textMessage
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
+                    modal.style.display = "none";
+                    form.reset();
+                } else {
+                    alert("Сталася помилка при відправці. Будь ласка, спробуйте зателефонувати.");
+                    console.error("Помилка Telegram API");
+                }
+            })
+            .catch(error => {
+                alert("Помилка мережі. Будь ласка, спробуйте зателефонувати.");
+                console.error("Помилка fetch:", error);
+            })
+            .finally(() => {
+                // Повертаємо кнопку в початковий стан
+                submitButton.disabled = false;
+                submitButton.innerText = originalButtonText;
+            });
         }
     </script>
 
