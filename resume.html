@@ -534,11 +534,11 @@
             const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.innerText;
             
-            // Блокуємо кнопку, щоб уникнути подвійних натискань
+            // Блокуємо кнопку
             submitButton.disabled = true;
             submitButton.innerText = "Відправка...";
 
-            // Знаходимо поля вводу (за типом)
+            // Знаходимо поля вводу
             const nameInput = form.querySelector('input[type="text"]');
             const phoneInput = form.querySelector('input[type="tel"]');
             
@@ -548,29 +548,50 @@
             // Налаштування Telegram
             const botToken = "8427026854:AAGaHXhz9J_r8GrOAxvRTl2FePxPdDs47-s";
             const chatId = 942134682;
-            const textMessage = `Сергій Анатолійович - зверніть увагу на сайті лишили заявку ${phone} - імя ${name}`;
-            
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+            // Текст першого повідомлення
+            const firstMessage = `Сергій Анатолійович - зверніть увагу на сайті лишили заявку ${phone} - імя ${name}`;
+            
+            // Очистка номеру для другого повідомлення (видаляємо дужки, пробіли, тире)
+            // Залишаємо тільки цифри та плюс. Це гарантує, що Telegram зробить його клікабельним.
+            const cleanPhone = phone.replace(/[^\d+]/g, '');
 
-            // Відправка запиту
+            // 1. Відправка основного тексту
             fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: chatId,
-                    text: textMessage
+                    text: firstMessage
                 })
             })
             .then(response => {
                 if (response.ok) {
+                    // 2. Якщо перше пішло успішно, відразу шлемо друге (тільки номер)
+                    return fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: cleanPhone // Тільки чистий номер для кліку
+                        })
+                    });
+                } else {
+                    throw new Error('Помилка при відправці першого повідомлення');
+                }
+            })
+            .then(response => {
+                // Тут ми вже після спроби відправки другого повідомлення
+                if (response && response.ok) {
                     alert("Дякую! Вашу заявку прийнято. Я зателефоную вам найближчим часом.");
                     modal.style.display = "none";
                     form.reset();
                 } else {
-                    alert("Сталася помилка при відправці. Будь ласка, спробуйте зателефонувати.");
-                    console.error("Помилка Telegram API");
+                    // Якщо друге не пішло, але перше пішло - все одно кажемо ОК користувачу, бо заявка є
+                    alert("Дякую! Вашу заявку прийнято.");
+                    modal.style.display = "none";
+                    form.reset();
                 }
             })
             .catch(error => {
